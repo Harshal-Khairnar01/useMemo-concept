@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import "./App.css";
+import useCustomMemoHook from "./hooks/use-custom-hook";
 
 export default function App() {
   const [counter, setCounter] = useState(0);
@@ -8,7 +9,10 @@ export default function App() {
     console.log("heavy calculation");
     return counter * counter;
   };
-  const memoizedSquareValue = useMemo(squaredValue, [counter]);
+  // const memoizedSquareValue = useMemo(squaredValue, [counter]);
+
+  // using custom memo
+  const memoizedSquareValue = useCustomMemoHook(squaredValue, [counter]);
   return (
     <div>
       <h1> counter: {counter}</h1>
